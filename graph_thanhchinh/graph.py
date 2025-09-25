@@ -158,7 +158,168 @@ def check_directed_connectivity(graph):
         return "Đồ thị liên thông yếu."
     else:
         return "Đồ thị không liên thông."
+    
+#Hàm tạo ma trận kề cho đồ thị vô hướng    
+def create_adj_matrix_undirected(graph, nodes):
+    """
+    Hàm tạo ma trận kề cho đồ thị vô hướng.
 
+    Args:
+        graph: Đồ thị.
+        nodes: Danh sách các đỉnh trong đồ thị.
 
+    Returns:
+        list: Một ma trận kề dưới dạng danh sách các danh sách (list of lists).
 
+    Raises:
+        ValueError: Nếu một đỉnh trong graph.edges() không tồn tại trong danh sách nodes.
+    """
+    n = len(nodes)
+    adj_matrix = [[0] * n for _ in range(n)]
+
+    # Tạo một từ điển để ánh xạ đỉnh sang chỉ số, giúp tìm kiếm hiệu quả hơn
+    node_to_index = {node: i for i, node in enumerate(nodes)}
+
+    for u_node, v_node in graph.edges():
+        try:
+            u_index = node_to_index[u_node]
+            v_index = node_to_index[v_node]
+        except KeyError:
+            # Raise ValueError nếu đỉnh không tồn tại
+            raise ValueError(f"Đỉnh '{u_node}' hoặc '{v_node}' không tồn tại trong danh sách nodes.")
+
+        # Đặt 1 cho cả hai chiều vì đây là đồ thị vô hướng
+        adj_matrix[u_index][v_index] = 1
+        adj_matrix[v_index][u_index] = 1
+
+    return adj_matrix
+
+#Hàm tạo ma trận kề cho đồ thị có hướng
+def create_adj_matrix_directed(graph, nodes):
+    """
+    Tạo ma trận kề cho một đồ thị có hướng.
+
+    Args:
+        graph: Đối tượng đồ thị có hướng.
+        nodes: Danh sách các đỉnh trong đồ thị.
+
+    Returns:
+        list: Ma trận kề dưới dạng danh sách các danh sách.
+
+    Raises:
+        ValueError: Nếu một đỉnh trong graph.edges() không tồn tại trong danh sách nodes.
+    """
+    n = len(nodes)
+    adj_matrix = [[0] * n for _ in range(n)]
+
+    # Tạo một từ điển để ánh xạ đỉnh sang chỉ số, giúp tìm kiếm hiệu quả hơn
+    node_to_index = {node: i for i, node in enumerate(nodes)}
+
+    # Duyệt qua các cạnh và chỉ thêm một chiều
+    for u_node, v_node in graph.edges():
+        try:
+            u_index = node_to_index[u_node]
+            v_index = node_to_index[v_node]
+        except KeyError:
+            # Raise ValueError nếu đỉnh không tồn tại
+            raise ValueError(f"Đỉnh '{u_node}' hoặc '{v_node}' không tồn tại trong danh sách nodes.")
+
+        # Thêm cạnh từ u_node đến v_node
+        adj_matrix[u_index][v_index] = 1
+
+    return adj_matrix
+
+#Hàm in ma trận kề
+def print_adj_matrix(adj_matrix, nodes):
+    """
+    In ma trận kề một cách rõ ràng và dễ đọc.
+
+    Args:
+        adj_matrix (list): Ma trận kề dưới dạng danh sách các danh sách.
+        nodes (list): Danh sách các đỉnh tương ứng với ma trận kề.
+    """
+    if not adj_matrix or not nodes:
+        print("Ma trận kề hoặc danh sách đỉnh rỗng.")
+        return
+
+    # Tạo hàng tiêu đề cột
+    header = "   " + " ".join([str(node) for node in nodes])
+    print(header)
+
+    # In từng hàng của ma trận
+    for i, row in enumerate(adj_matrix):
+        # In tiêu đề hàng (đỉnh) và các giá trị của hàng đó
+        row_str = " ".join(map(str, row))
+        print(f"{nodes[i]}| {row_str}")
+   
+#Hàm tạo danh sách kề cho đồ thị vô hướng        
+def create_adj_list_undirected(graph, nodes):
+    """
+    Tạo danh sách kề cho đồ thị vô hướng.
+
+    Args:
+        graph: Đối tượng đồ thị.
+        nodes: Danh sách các đỉnh trong đồ thị.
+
+    Returns:
+        dict: Một từ điển biểu diễn danh sách kề.
+
+    Raises:
+        ValueError: Nếu một đỉnh trong graph.edges() không tồn tại trong danh sách nodes.
+    """
+    adj_list = {node: [] for node in nodes}
+
+    for u_node, v_node in graph.edges():
+        if u_node not in adj_list or v_node not in adj_list:
+            raise ValueError(f"Đỉnh '{u_node}' hoặc '{v_node}' không tồn tại trong danh sách nodes.")
+
+        # Thêm các đỉnh liền kề vào danh sách của nhau.
+        adj_list[u_node].append(v_node)
+        adj_list[v_node].append(u_node)
+
+    return adj_list
+
+#Hàm tạo danh sách kề cho đồ thị có hướng
+def create_adj_list_directed(graph, nodes):
+    """
+    Tạo danh sách kề cho đồ thị có hướng.
+
+    Args:
+        graph: Đối tượng đồ thị.
+        nodes: Danh sách các đỉnh trong đồ thị.
+
+    Returns:
+        dict: Một từ điển biểu diễn danh sách kề.
+
+    Raises:
+        ValueError: Nếu một đỉnh trong graph.edges() không tồn tại trong danh sách nodes.
+    """
+    adj_list = {node: [] for node in nodes}
+
+    for u_node, v_node in graph.edges():
+        if u_node not in adj_list or v_node not in adj_list:
+            raise ValueError(f"Đỉnh '{u_node}' hoặc '{v_node}' không tồn tại trong danh sách nodes.")
+
+        # Chỉ thêm cạnh một chiều từ u_node đến v_node.
+        adj_list[u_node].append(v_node)
+
+    return adj_list
+
+#Hàm in danh sách kề
+def print_adj_list(adj_list):
+    """
+    In danh sách kề một cách rõ ràng và dễ đọc.
+
+    Args:
+        adj_list (dict): Từ điển biểu diễn danh sách kề.
+    """
+    if not adj_list:
+        print("Danh sách kề rỗng.")
+        return
+
+    print("Danh sách kề:")
+    for node, neighbors in adj_list.items():
+        # Chuyển đổi các đỉnh liền kề thành chuỗi để in
+        neighbors_str = ", ".join(map(str, sorted(neighbors)))
+        print(f"{node}: [{neighbors_str}]")   
 
