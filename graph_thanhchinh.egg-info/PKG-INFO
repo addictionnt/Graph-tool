@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: graph-thanhchinh
+Version: 0.1.1
+Summary: Một thư viện đơn giản để tạo và trực quan hóa đồ thị.
+Author-email: Nguyễn Như Thành <nguyennhuthanh03042006@gmail.com>
+Project-URL: Homepage, https://github.com/addictionnt
+Project-URL: Issues, https://github.com/addictionnt/Graph-tool
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: networkx
+Requires-Dist: matplotlib
+Dynamic: license-file
