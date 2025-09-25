@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "graph-thanhchinh"
+version = "0.1.0"
+authors = [
+  { name="Nguyễn Như Thành", email="nguyennhuthanh03042006@gmail.com" },
+]
+description = "Một thư viện đơn giản để tạo và trực quan hóa đồ thị."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "networkx",
+    "matplotlib"
+]
+
+[project.urls]
+Homepage = "https://github.com/addictionnt"
+Issues = "https://github.com/addictionnt/Graph-tool"
