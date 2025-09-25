@@ -20,3 +20,8 @@ Bạn có thể dễ dàng cài đặt thư viện này thông qua `pip`:
 ```bash
 pip install graph-thanhchinh
 
+---
+
+## Tác giả
+
+Nguyễn Như Thành - @addictionnt
