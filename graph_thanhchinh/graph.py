@@ -126,6 +126,38 @@ def get_node_info(graph, node):
     
     return info
 
+#Hàm kiểm tra liên thông của đồ thị vô hướng
+def check_undirected_connectivity(graph):
+    """
+    Kiểm tra trạng thái liên thông của một đồ thị vô hướng.
+
+    Args:
+        graph (nx.Graph): Đồ thị vô hướng cần kiểm tra.
+
+    Returns:
+        str: "Đồ thị liên thông" nếu đồ thị liên thông, ngược lại là "Đồ thị không liên thông".
+    """
+    if nx.is_connected(graph):
+        return "Đồ thị liên thông."
+    else:
+        return "Đồ thị không liên thông."
+    
+def check_directed_connectivity(graph):
+    """
+    Kiểm tra trạng thái liên thông của một đồ thị có hướng.
+
+    Args:
+        graph (nx.DiGraph): Đồ thị có hướng cần kiểm tra.
+
+    Returns:
+        str: Trạng thái liên thông mạnh, yếu, hoặc không liên thông.
+    """
+    if nx.is_strongly_connected(graph):
+        return "Đồ thị liên thông mạnh."
+    elif nx.is_weakly_connected(graph):
+        return "Đồ thị liên thông yếu."
+    else:
+        return "Đồ thị không liên thông."
 
 
 
