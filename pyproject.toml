@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "graph-thanhchinh"
-version = "0.1.4"
+version = "0.1.5"
 authors = [
   { name="Nguyễn Như Thành", email="nguyennhuthanh03042006@gmail.com" },
 ]
