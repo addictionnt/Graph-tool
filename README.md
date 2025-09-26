@@ -9,7 +9,8 @@
 
 * Tạo đồ thị vô hướng và có hướng một cách dễ dàng.
 * Trực quan hóa đồ thị một cách rõ ràng bằng Matplotlib.
-* Hỗ trợ các thuật toán cơ bản (sẽ được cập nhật thêm trong tương lai).
+* Hỗ trợ các thuật toán.
+* Thêm nhiều chức năng hỗ trợ làm dự án, bài tập lớn.
 
 ---
 
