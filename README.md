@@ -28,6 +28,8 @@ pip install graph-thanhchinh
 
 Nguyễn Như Thành - @addictionnt
 
+---
+
 ## 📜 Lịch sử Cập nhật (Changelog)
 
 Tất cả các thay đổi và tính năng mới của từng phiên bản đều được ghi chép chi tiết trong mục [**Releases**](https://github.com/addictionnt/Graph-tool/releases).
