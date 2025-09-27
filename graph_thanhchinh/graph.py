@@ -322,4 +322,59 @@ def print_adj_list(adj_list):
         # Chuyển đổi các đỉnh liền kề thành chuỗi để in
         neighbors_str = ", ".join(map(str, sorted(neighbors)))
         print(f"{node}: [{neighbors_str}]")   
+        
+#Hàm vẽ đồ thị với các cạnh được tô màu
+def show_graph_with_egdes_to_highlight(graph, edges_to_highlight, pos=None):
+    """
+    Vẽ đồ thị (graph) với các cạnh cụ thể được tô màu để nổi bật.
+
+    Các cạnh được cung cấp trong edges_to_highlight sẽ được tô màu đỏ, 
+    giúp trực quan hóa đường đi hoặc tập hợp cạnh quan trọng.
+
+    Args:
+        graph: Đồ thị
+        edges_to_highlight: Danh sách các cạnh cần tô sáng.
+        pos: Chứa vị trí đã xác định của các nút 
+             Nếu là None, sẽ tự tính toán. 
+             Mặc định là None.
+
+    Returns:
+        None: Hàm hiển thị đồ thị trực tiếp bằng Matplotlib.
+    """
+    
+    # 1. Tính toán vị trí các nút nếu chưa có
+    if pos is None:
+        pos = nx.spring_layout(graph, seed=42)
+
+    # 2. Xử lý tập hợp các cạnh cần tô sáng
+    # Tạo một tập hợp (set) để kiểm tra nhanh hơn, thêm cả thứ tự ngược (v, u)
+    highlight_set = set()
+    for u, v in edges_to_highlight:
+        highlight_set.add((u, v))
+        # Nếu là đồ thị vô hướng, thêm cả chiều ngược
+        if not graph.is_directed():
+             highlight_set.add((v, u))
+
+    # 3. Tạo danh sách màu cho TẤT CẢ các cạnh
+    edge_colors = []
+    for u, v in graph.edges():
+        # Kiểm tra xem cạnh hiện tại có nằm trong tập hợp nổi bật không
+        if (u, v) in highlight_set:
+            edge_colors.append('red') # Màu cho cạnh nổi bật
+        else:
+            edge_colors.append('black') # Màu mặc định cho các cạnh khác
+
+    # 4. Vẽ đồ thị với các tham số đã chuẩn bị
+    nx.draw(graph, pos,
+            with_labels=True,        # Hiển thị nhãn nút
+            node_color='skyblue',    # Màu nút
+            node_size=800,           # Kích thước nút
+            edge_color=edge_colors,  # Danh sách cạnh và màu
+            width=2)                 # Độ dày của cạnh
+
+    # Tắt trục tọa độ
+    plt.axis('off')
+
+    # Hiển thị đồ thị đã vẽ
+    plt.show()
 
