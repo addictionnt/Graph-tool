@@ -43,7 +43,7 @@ def find_shortest_path(adj_list, start_node, goal_node):
     # 3. Tái tạo đường đi
     # Nếu nút đích không có nút tiền nhiệm, nghĩa là không thể đến được (trừ khi start=goal)
     if came_from.get(goal_node) is None and start_node != goal_node:
-        return [], 0
+        return []
     
     path = []
     current = goal_node

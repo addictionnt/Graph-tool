@@ -1,3 +1,21 @@
+# [0.1.7] - 2025-09-28
+
+### 🐛 Fixed (Sửa lỗi)
+
+-   **Tính nhất quán của `find_shortest_path()`:** Đã sửa lỗi logic trong hàm `find_shortest_path()`. Hàm này hiện đã **nhất quán** trả về một **list rỗng** (`[]`) trong tất cả các trường hợp không tìm thấy đường đi hoặc nút không hợp lệ.
+    -   Trước đây, hàm có thể trả về `([], 0)` (một tuple) hoặc `[]` (một list), gây ra sự không nhất quán trong kiểu dữ liệu trả về.
+    -   Hàm hiện tại chỉ trả về **list** (list đường đi nếu thành công, `[]` nếu thất bại).
+
+## [0.1.6] - 2025-09-27
+
+### ✨ Added (Thêm mới)
+
+-   **Thêm Module Thuật toán Đồ thị Cơ bản (BFS):**
+    -   `find_shortest_path()`: Triển khai thuật toán **Duyệt theo Chiều Rộng (BFS)** để tìm đường đi ngắn nhất (ít cạnh nhất) giữa hai nút trong đồ thị được biểu diễn bằng danh sách kề.
+    -   `path_to_edges()`: Chức năng tiện ích để chuyển đổi danh sách các nút của một đường đi thành danh sách các cạnh (tuple).
+-   **Thêm Tính năng Trực quan hóa Nổi bật:**
+    -   `show_graph_with_egdes_to_highlight()`: Cho phép vẽ đồ thị (sử dụng NetworkX) và **tô màu đỏ** cho một tập hợp các cạnh cụ thể (ví dụ: đường đi ngắn nhất). Hỗ trợ đồ thị có hướng và vô hướng.
+
 ## [0.1.5] - 2025-09-26
 
 ### ✨ Added (Thêm mới)
