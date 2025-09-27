@@ -18,8 +18,8 @@ def find_shortest_path(adj_list, start_node, goal_node):
     # 1. Kiểm tra và Khởi tạo
     if start_node not in adj_list or goal_node not in adj_list:
         if start_node == goal_node:
-            return [start_node], 0
-        return [], 0
+            return [start_node]
+        return []
     from collections import deque
     
     queue = deque([start_node])
@@ -54,7 +54,7 @@ def find_shortest_path(adj_list, start_node, goal_node):
     
     path.reverse()
     
-    return path if path and path[0] == start_node else []
+    return path
 
 #Hàm chuyển path thành edges
 def path_to_edges(path):

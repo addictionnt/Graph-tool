@@ -1,4 +1,12 @@
-# [0.1.7] - 2025-09-28
+# [0.1.8] - 2025-09-27
+
+### ✨ Added (Tính năng mới)
+
+- 🖼️ **Ra mắt hàm `save_graph_image_with_highlights()`:** Đã bổ sung hàm mới cho phép vẽ và lưu ảnh đồ thị, trong đó các **cạnh được chỉ định có thể được tô màu** (mặc định là màu đỏ).
+    - Tính năng này rất hữu ích cho việc trực quan hóa **kết quả thuật toán** như đường đi ngắn nhất (shortest paths) hoặc luồng tối đa (maximum flow).
+    - Hàm sử dụng `pathlib` để quản lý I/O và tự động tạo thư mục `img/`.
+
+# [0.1.7] - 2025-09-27
 
 ### 🐛 Fixed (Sửa lỗi)
 
